@@ -1,5 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class RockPaperScissors {
 	
@@ -24,7 +25,7 @@ public class RockPaperScissors {
 				Human();
 			} else if (input == 2) {
 				System.out.println("Loading Human vs AI");
-				//AI();
+				AI();
 			} else if (input == 3) {
 				System.out.println("Shutting Down");
 				shutdown = true;
@@ -134,5 +135,53 @@ public class RockPaperScissors {
 			System.out.println("Scissors was the most common move");
 		}
 	}
-
+	
+	public static void AI() {
+		
+		
+		char[] rps = {'r','p','s'};
+		
+		Scanner scanHuman = new Scanner(System.in);
+		
+		boolean winner = false;
+		
+		int gameCount = 0;
+		
+		Random rng = new Random();
+		
+		
+		rCount = 0;
+		pCount = 0;
+		sCount = 0;
+		
+		
+		while(!winner) {
+			
+			gameCount++;
+			char playerOne = 'a';
+			char playerAI = 'b';
+		
+		while(!inputCheck(playerOne)){
+			System.out.println("Player 1: ");
+			playerOne = scanHuman.next(".").charAt(0);
+		}
+		
+		playerAI = rps[rng.nextInt(3)];
+		inputCheck(playerAI);
+		System.out.println("The AI chose : " + playerAI);
+		
+		
+		if(rules(playerOne, playerAI)) {
+			System.out.println("Player One wins. This game took " + gameCount + " attempts!");
+			commonMovePrinter();
+			winner = true;
+		} else if (rules(playerAI, playerOne)) {
+			System.out.println("Player Two wins. This game took " + gameCount + " attempts!");
+			commonMovePrinter();
+			winner = true;
+		} else {
+			System.out.println("Draw! try again");
+		}		
+	}
+	}
 }
